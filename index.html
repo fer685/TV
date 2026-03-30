@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FER Media Center</title>
+    <style>
+        body { background: #000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        h1 { color: #ff0000; text-transform: uppercase; letter-spacing: 2px; }
+        .search-area { background: #1a1a1a; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #333; }
+        input { padding: 12px; width: 60%; border-radius: 10px; border: none; outline: none; font-size: 16px; }
+        .btn { padding: 12px 20px; border-radius: 10px; border: none; color: white; font-weight: bold; cursor: pointer; margin: 5px; transition: 0.3s; }
+        .yt-btn { background: #ff0000; }
+        .tk-btn { background: #00f2ea; color: #000; }
+        .btn:hover { opacity: 0.8; transform: scale(1.05); }
+        .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; background: #111; border: 1px solid #444; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .help-text { font-size: 12px; color: #777; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FER Media Center</h1>
+    
+    <div class="search-area">
+        <input type="text" id="contentID" placeholder="Pega el ID del Video aquí...">
+        <br><br>
+        <button class="btn yt-btn" onclick="loadVideo('yt')">VER YOUTUBE</button>
+        <button class="btn tk-btn" onclick="loadVideo('tk')">VER TIKTOK</button>
+        
+        <div class="help-text">
+            YouTube: Ej. dQw4w9WgXcQ | TikTok: Ej. 7123456789012345678
+        </div>
+    </div>
+
+    <div class="video-box" id="display">
+        <div style="padding: 50px; text-align: center; color: #555;">
+            <h3>Listo para reproducir</h3>
+            <p>Ingresa un ID y elige plataforma</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadVideo(platform) {
+        const id = document.getElementById('contentID').value.trim();
+        const display = document.getElementById('display');
+        
+        if(!id) { alert("Ingresa un ID primero"); return; }
+
+        if(platform === 'yt') {
+            display.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        } else {
+            display.innerHTML = `<iframe src="https://www.tiktok.com/embed/v2/${id}" allow="fullscreen"></iframe>`;
+        }
+    }
+</script>
+
+</body>
+</html>
